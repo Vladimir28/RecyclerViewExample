@@ -12,6 +12,7 @@ constraintlayout = "2.2.1"
 lifecycle = "2.9.4"
 room = "2.8.3"
 recyclerciew = "1.2.1"
+cardview = "1.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -28,6 +29,7 @@ androidx-room-runtime = {group = "androidx.room", name = "room-runtime", version
 androidx-room-ktx = {group = "androidx.room", name="room-ktx", version.ref = "room"}
 androidx-room-compiler = {group = "androidx.room", name="room-compiler", version.ref = "room"}
 androidx-recyclerview = {group = "androidx.recyclerview", name="recyclerview", version.ref ="recyclerciew"}
+androidx-cardview = {group = "androidx.cardview", name ="cardview", version.ref = "cardview"}
 
 
 [plugins]

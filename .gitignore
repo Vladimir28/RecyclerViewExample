@@ -1,15 +1,16 @@
+# Игнорируем специфичные файлы IDE
+.idea/
 *.iml
 .gradle
 /local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
+local.properties
+
+# Игнорируем папки сборки
 /build
+/*/build
+
+# Игнорируем логи и временные файлы
 /captures
 .externalNativeBuild
 .cxx
-local.properties
+.DS_Store

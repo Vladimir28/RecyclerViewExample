@@ -35,6 +35,7 @@ class TaskItemAdapter : RecyclerView.Adapter<TaskItemAdapter.TaskItemViewHolder>
             taskName.text = item.taskName
            // taskDone.isDirty = item.taskDone
         }
+        //Проверка перехода с MAC
 
         companion object{
             fun inflateFrom(parent: ViewGroup): TaskItemViewHolder{

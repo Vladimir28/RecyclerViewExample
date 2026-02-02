@@ -2,6 +2,7 @@ package com.hfad.tasks
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
@@ -26,25 +27,24 @@ class TaskItemAdapter : RecyclerView.Adapter<TaskItemAdapter.TaskItemViewHolder>
     }
 
     //Определяет держатель представления
-    class TaskItemViewHolder(val rootView: CardView) : RecyclerView.ViewHolder(rootView){
+        class TaskItemViewHolder(val rootView: CardView) : RecyclerView.ViewHolder(rootView){
 
-        val taskName = rootView.findViewById<TextView>(R.id.task_name)
-        val taskDone = rootView.findViewById<TextView>(R.id.task_done)
+            val taskName = rootView.findViewById<TextView>(R.id.task_name)
+            val taskDone = rootView.findViewById<CheckBox>(R.id.task_done)
 
-        fun bind(item: Task){
-            taskName.text = item.taskName
-           // taskDone.isDirty = item.taskDone
-        }
-        //Проверка перехода с MAC
+            fun bind(item: Task){
+                taskName.text = item.taskName
+                taskDone.isChecked = item.taskDone
+            }
 
-        companion object{
-            fun inflateFrom(parent: ViewGroup): TaskItemViewHolder{
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(R.layout.task_item, parent, false) as CardView
-                return TaskItemViewHolder(view)
+            companion object{
+                fun inflateFrom(parent: ViewGroup): TaskItemViewHolder{
+                    val layoutInflater = LayoutInflater.from(parent.context)
+                    val view = layoutInflater.inflate(R.layout.task_item, parent, false) as CardView
+                    return TaskItemViewHolder(view)
+                }
             }
         }
-    }
 }
 
 /*Современная версия

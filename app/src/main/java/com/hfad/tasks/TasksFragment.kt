@@ -37,7 +37,7 @@ class TasksFragment : Fragment() {
 
         viewModel.tasks.observe(viewLifecycleOwner){
             it?.let {
-                adapter.data = it
+                adapter.submitList(it)
             }
         }
         return view

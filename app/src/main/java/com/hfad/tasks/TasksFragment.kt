@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.hfad.tasks.databinding.FragmentTasksBinding
 
@@ -32,7 +33,10 @@ class TasksFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        val adapter = TaskItemAdapter()
+        val instruction = { taskId: Long ->
+            Toast.makeText(context, "Clicked task $taskId", Toast.LENGTH_SHORT).show()
+        }
+        val adapter = TaskItemAdapter(instruction)
         binding.tasksList.adapter = adapter
 
         viewModel.tasks.observe(viewLifecycleOwner){

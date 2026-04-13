@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.hfad.tasks.databinding.TaskItemBinding
 
-class TaskItemAdapter : ListAdapter<Task, TaskItemAdapter.TaskItemViewHolder>(TaskDiffItemCallback()) /*RecyclerView.Adapter<TaskItemAdapter.TaskItemViewHolder>()*/ {
+class TaskItemAdapter(val clickListener: (taskId: Long) -> Unit)
+    : ListAdapter<Task, TaskItemAdapter.TaskItemViewHolder>(TaskDiffItemCallback()) /*RecyclerView.Adapter<TaskItemAdapter.TaskItemViewHolder>()*/ {
 /*    var data = listOf<Task>()
         set(value) {
             field = value
@@ -26,14 +27,16 @@ class TaskItemAdapter : ListAdapter<Task, TaskItemAdapter.TaskItemViewHolder>(Ta
     override fun onBindViewHolder(holder: TaskItemViewHolder, position: Int){
        // val item = data[position]
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item, clickListener)
+
     }
 
     //Определяет держатель представления
         class TaskItemViewHolder(val binding: TaskItemBinding) : RecyclerView.ViewHolder(binding.root){
 
-            fun bind(item: Task){
+            fun bind(item: Task, clickListener: (Long) -> Unit){
                 binding.task = item
+                binding.root.setOnClickListener { clickListener(item.taskId) }
             }
 
             companion object{

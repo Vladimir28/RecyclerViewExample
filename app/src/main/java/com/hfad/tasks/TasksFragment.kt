@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.text.set
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -29,17 +30,16 @@ class TasksFragment : Fragment() {
 
         val application = requireNotNull(this.activity).application
         val dao = TaskDatabase.getInstance(application).taskDao
+
         val viewModelFactory = TaskViewModelFactory(dao)
         val viewModel = ViewModelProvider(this, viewModelFactory)[TaskViewModel::class]
 
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
-        val instruction = { taskId: Long ->
+        val adapter = TaskItemAdapter{ taskId ->
             viewModel.onTaskClicked(taskId)
-            Toast.makeText(context, "Clicked task $taskId", Toast.LENGTH_SHORT).show()
         }
-        val adapter = TaskItemAdapter(instruction)
 
         binding.tasksList.adapter = adapter
 
@@ -50,6 +50,7 @@ class TasksFragment : Fragment() {
                 viewModel.onTaskNavigated()
             }
         })
+
 
         viewModel.tasks.observe(viewLifecycleOwner){
             it?.let {

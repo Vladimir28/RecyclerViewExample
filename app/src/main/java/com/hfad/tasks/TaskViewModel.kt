@@ -38,7 +38,6 @@ class TaskViewModel(val dao: TaskDao): ViewModel() {
     fun onTaskNavigated(){
         _navigateToTask.value = null
     }
-
     fun addTask(){
         viewModelScope.launch {
             val task = Task()
